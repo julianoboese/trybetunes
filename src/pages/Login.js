@@ -10,7 +10,7 @@ class Login extends React.Component {
     loading: false,
   }
 
-  onInputChange = ({ target }) => {
+  handleChange = ({ target }) => {
     const minLength = 3;
     this.setState({
       name: target.value,
@@ -18,7 +18,7 @@ class Login extends React.Component {
     });
   }
 
-  onLoginSubmit = (event) => {
+  handleSubmit = (event) => {
     const { name } = this.state;
     const { onLogin } = this.props;
     event.preventDefault();
@@ -41,7 +41,7 @@ class Login extends React.Component {
                 name="name"
                 placeholder="Digite seu nome"
                 value={ name }
-                onChange={ this.onInputChange }
+                onChange={ this.handleChange }
                 data-testid="login-name-input"
               />
               <button

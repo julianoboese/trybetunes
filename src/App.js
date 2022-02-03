@@ -13,7 +13,7 @@ class App extends React.Component {
     loggedIn: false,
   }
 
-  onLogin = () => {
+  handleLogin = () => {
     this.setState({ loggedIn: true });
   }
 
@@ -28,7 +28,7 @@ class App extends React.Component {
             exact
             path="/"
             render={ (props) => (loggedIn ? <Redirect to="/search" />
-              : <Login { ...props } onLogin={ this.onLogin } />) }
+              : <Login { ...props } onLogin={ this.handleLogin } />) }
           />
           <Route path="/search" component={ Search } />
           <Route path="/album/:id" component={ Album } />
