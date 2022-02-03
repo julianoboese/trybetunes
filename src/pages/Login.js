@@ -35,7 +35,7 @@ class Login extends React.Component {
       <div data-testid="page-login">
         {loading ? <Loading />
           : (
-            <form onSubmit={ this.onLoginSubmit }>
+            <form onSubmit={ this.handleSubmit }>
               <input
                 type="text"
                 name="name"
