@@ -1,7 +1,12 @@
 import React from 'react';
+import Header from '../components/Header';
 
 function ProfileEdit() {
-  return <div data-testid="page-profile-edit">ProfileEdit</div>;
+  return (
+    <div data-testid="page-profile-edit">
+      <Header />
+    </div>
+  );
 }
 
 export default ProfileEdit;
