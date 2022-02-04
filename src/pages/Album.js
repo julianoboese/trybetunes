@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Loading from '../components/Loading';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends React.Component {
   state= {
@@ -19,13 +19,17 @@ class Album extends React.Component {
     const { match } = this.props;
     const { params } = match;
     const { id } = params;
-    this.setState({ loading: true }, async () => {
-      const response = await getMusics(id);
-      this.setState({ loading: false,
-        artist: response[0].artistName,
-        album: response[0].collectionName,
-        songs: response.filter((song) => song.kind === 'song') });
-    });
+    this.setState({ loading: true },
+      async () => {
+        const albumResponse = await getMusics(id);
+        this.setState({ artist: albumResponse[0].artistName,
+          album: albumResponse[0].collectionName,
+          songs: albumResponse.filter((song) => song.kind === 'song') },
+        async () => {
+          const favoritesResponse = await getFavoriteSongs();
+          this.setState({ loading: false, favorites: [...favoritesResponse] });
+        });
+      });
   }
 
   handleFavorite = ({ target }) => {
