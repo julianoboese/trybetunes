@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Loading from '../components/Loading';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
-import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 
 class Album extends React.Component {
   state= {
@@ -37,9 +37,15 @@ class Album extends React.Component {
     const songObject = songs.find((song) => song.trackId === parseInt(target.id, 10));
     this.setState((prevState) => ({
       loading: true,
-      favorites: [...prevState.favorites, songObject],
+      favorites: target.checked ? [...prevState.favorites, songObject]
+        : prevState.favorites
+          .filter((favorite) => favorite.trackId !== parseInt(target.id, 10)),
     }), async () => {
-      await addSong(songObject);
+      if (target.checked) {
+        await addSong(songObject);
+      } else {
+        await removeSong(songObject);
+      }
       this.setState({ loading: false });
     });
   }
