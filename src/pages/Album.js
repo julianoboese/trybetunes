@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Loading from '../components/Loading';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
+import { addSong } from '../services/favoriteSongsAPI';
 
 class Album extends React.Component {
   state= {
@@ -11,6 +12,7 @@ class Album extends React.Component {
     album: '',
     loading: false,
     songs: [],
+    favorites: [],
   }
 
   componentDidMount() {
@@ -26,8 +28,20 @@ class Album extends React.Component {
     });
   }
 
+  handleFavorite = ({ target }) => {
+    const { songs } = this.state;
+    const songObject = songs.find((song) => song.trackId === parseInt(target.id, 10));
+    this.setState((prevState) => ({
+      loading: true,
+      favorites: [...prevState.favorites, songObject],
+    }), async () => {
+      await addSong(songObject);
+      this.setState({ loading: false });
+    });
+  }
+
   render() {
-    const { artist, album, loading, songs } = this.state;
+    const { artist, album, loading, songs, favorites } = this.state;
 
     return (
       <div data-testid="page-album">
@@ -45,7 +59,11 @@ class Album extends React.Component {
                     key={ song.trackId }
                     trackId={ song.trackId }
                     trackName={ song.trackName }
+                    isChecked={ favorites.some(
+                      (favorite) => favorite.trackId === song.trackId,
+                    ) }
                     previewUrl={ song.previewUrl }
+                    onFavoriteCheck={ this.handleFavorite }
                   />
                 ))}
               </section>
