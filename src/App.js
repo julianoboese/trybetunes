@@ -12,11 +12,16 @@ import './App.css';
 class App extends React.Component {
   state = {
     loggedIn: false,
+    // profileEdited: false,
   }
 
   handleLogin = () => {
     this.setState({ loggedIn: true });
   }
+
+  // handleProfileEdit = () => {
+  //   this.setState({ profileEdited: true });
+  // }
 
   render() {
     const { loggedIn } = this.state;
@@ -35,6 +40,12 @@ class App extends React.Component {
           <Route path="/album/:id" component={ Album } />
           <Route path="/favorites" component={ Favorites } />
           <Route exact path="/profile" component={ Profile } />
+          {/* <Route
+            exact
+            path="/profile/edit"
+            render={ (props) => (profileEdited ? <Redirect to="/profile" />
+              : <ProfileEdit { ...props } onEdit={ this.handleProfileEdit } />) }
+          /> */}
           <Route path="/profile/edit" component={ ProfileEdit } />
           <Route path="*" component={ NotFound } />
         </Switch>
