@@ -59,9 +59,6 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-//   username: PropTypes.string.isRequired,
-//   onInputChange: PropTypes.func.isRequired,
-//   onLoginSubmit: PropTypes.func.isRequired,
   onLogin: PropTypes.func.isRequired,
 };
 
