@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Loading from '../components/Loading';
 import { createUser } from '../services/userAPI';
+import { ReactComponent as Logo } from '../assets/logo.svg';
 
 class Login extends React.Component {
   state = {
@@ -33,6 +34,7 @@ class Login extends React.Component {
 
     return (
       <div data-testid="page-login">
+        <Logo />
         {loading ? <Loading />
           : (
             <form onSubmit={ this.handleSubmit }>

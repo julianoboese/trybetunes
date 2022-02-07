@@ -28,7 +28,6 @@ class App extends React.Component {
 
     return (
       <BrowserRouter>
-        <p>TrybeTunes</p>
         <Switch>
           <Route
             exact
