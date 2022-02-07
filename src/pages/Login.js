@@ -38,7 +38,7 @@ class Login extends React.Component {
         <Logo />
         {loading ? <Loading />
           : (
-            <section className="form-container">
+            <section className="login-form-container">
               <form className="login-form" onSubmit={ this.handleSubmit }>
                 <input
                   type="text"

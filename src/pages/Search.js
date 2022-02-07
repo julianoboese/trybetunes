@@ -44,33 +44,35 @@ class Search extends React.Component {
         <Header activePage={ path } />
         {loading ? <Loading />
           : (
-            <form onSubmit={ this.handleSubmit }>
-              <input
-                type="text"
-                name="artist"
-                placeholder="Digite o nome do artista"
-                value={ artist }
-                onChange={ this.handleChange }
-                data-testid="search-artist-input"
-              />
-              <button
-                type="submit"
-                disabled={ isButtonDisabled }
-                data-testid="search-artist-button"
-              >
-                Pesquisar
-              </button>
-            </form>
+            <section className="search-form-container">
+              <form className="search-form" onSubmit={ this.handleSubmit }>
+                <input
+                  type="text"
+                  name="artist"
+                  placeholder="Digite o nome do artista"
+                  value={ artist }
+                  onChange={ this.handleChange }
+                  data-testid="search-artist-input"
+                />
+                <button
+                  type="submit"
+                  disabled={ isButtonDisabled }
+                  data-testid="search-artist-button"
+                >
+                  Pesquisar
+                </button>
+              </form>
+            </section>
           )}
         {(!loading && artistSearched && searchResults.length === 0) && (
-          <div>
+          <div className="artist-not-found">
             <p>Nenhum álbum foi encontrado</p>
           </div>
         )}
         {(!loading && searchResults.length !== 0)
         && (
-          <div>
-            <p>{`Resultado de álbuns de: ${artistSearched}`}</p>
+          <div className="search-results-container">
+            <p>{`Resultado de álbuns de ${artistSearched}:`}</p>
             <section className="search-results">
               {searchResults.map((album) => (
                 <Card
@@ -78,6 +80,7 @@ class Search extends React.Component {
                   artistName={ album.artistName }
                   collectionName={ album.collectionName }
                   collectionId={ album.collectionId }
+                  albumImage={ album.artworkUrl100 }
                 />
               ))}
             </section>
