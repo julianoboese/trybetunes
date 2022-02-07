@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Card from '../components/Card';
 import Loading from '../components/Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import './css/Search.css';
 
 class Search extends React.Component {
   state = {
@@ -39,7 +40,7 @@ class Search extends React.Component {
     const { path } = match;
 
     return (
-      <div data-testid="page-search">
+      <div className="page-search" data-testid="page-search">
         <Header activePage={ path } />
         {loading ? <Loading />
           : (
