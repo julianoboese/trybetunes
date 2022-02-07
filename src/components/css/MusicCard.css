@@ -3,13 +3,26 @@
   border-bottom: 1px solid #e1e5eb;
   border-top: 1px solid #e1e5eb;
   display: flex;
+  justify-content: space-between;
 }
 
-.song-data span {
+.song-data > span {
   flex: 1;
+}
+
+.song-data > label {
+  flex: 1;
+}
+
+.song-data label {
+  text-align: center;
 }
 
 .song-data input {
   height: 18px;
   width: 18px;
+}
+
+.favorite-label {
+  display: none;
 }

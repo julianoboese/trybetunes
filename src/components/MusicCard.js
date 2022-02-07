@@ -20,6 +20,7 @@ function MusicCard(props) {
           data-testid={ `checkbox-music-${trackId}` }
           onChange={ onFavoriteCheck }
         />
+        <span className="favorite-label">Favorita</span>
       </label>
     </div>
   );

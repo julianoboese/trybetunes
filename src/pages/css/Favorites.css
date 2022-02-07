@@ -1,0 +1,9 @@
+.favorites {
+  margin: 80px auto;
+  width: 50vw;
+}
+
+.favorites p {
+  font-size: 20px;
+  margin-bottom: 50px;
+}

@@ -27,6 +27,7 @@
 
 .songs {
   margin-right: 80px;
+  width: 40vw;
 }
 
 .songs audio {
