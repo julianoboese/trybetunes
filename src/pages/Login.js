@@ -33,27 +33,29 @@ class Login extends React.Component {
     const { name, isButtonDisabled, loading } = this.state;
 
     return (
-      <div data-testid="page-login">
+      <div className="page-login" data-testid="page-login">
         <Logo />
         {loading ? <Loading />
           : (
-            <form onSubmit={ this.handleSubmit }>
-              <input
-                type="text"
-                name="name"
-                placeholder="Digite seu nome"
-                value={ name }
-                onChange={ this.handleChange }
-                data-testid="login-name-input"
-              />
-              <button
-                type="submit"
-                disabled={ isButtonDisabled }
-                data-testid="login-submit-button"
-              >
-                Entrar
-              </button>
-            </form>
+            <section className="form-container">
+              <form className="login-form" onSubmit={ this.handleSubmit }>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Digite seu nome"
+                  value={ name }
+                  onChange={ this.handleChange }
+                  data-testid="login-name-input"
+                />
+                <button
+                  type="submit"
+                  disabled={ isButtonDisabled }
+                  data-testid="login-submit-button"
+                >
+                  Entrar
+                </button>
+              </form>
+            </section>
           )}
       </div>
     );
