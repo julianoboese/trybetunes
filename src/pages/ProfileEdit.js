@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
@@ -49,13 +50,16 @@ class ProfileEdit extends React.Component {
     const { name, email, description, image, isButtonDisabled,
       loading, profileEdited } = this.state;
 
+    const { match } = this.props;
+    const { path } = match;
+
     if (profileEdited) {
       return <Redirect to="/profile" />;
     }
 
     return (
       <div data-testid="page-profile-edit">
-        <Header />
+        <Header activePage={ path } />
         {loading ? <Loading />
           : (
             <form onSubmit={ this.handleSubmit }>
@@ -111,5 +115,14 @@ class ProfileEdit extends React.Component {
     );
   }
 }
+
+ProfileEdit.propTypes = {
+  match: PropTypes.shape({
+    isExact: PropTypes.bool.isRequired,
+    params: PropTypes.shape({}).isRequired,
+    path: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default ProfileEdit;

@@ -1,0 +1,10 @@
+.song-data {
+  align-items: center;
+  border-bottom: 1px solid #e1e5eb;
+  border-top: 1px solid #e1e5eb;
+  display: flex;
+}
+
+.song-data span {
+  flex: 1;
+}

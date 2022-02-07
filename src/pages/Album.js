@@ -5,11 +5,13 @@ import Loading from '../components/Loading';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
 import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
+import './css/Album.css';
 
 class Album extends React.Component {
   state= {
     artist: '',
     album: '',
+    image: '',
     loading: false,
     songs: [],
     favorites: [],
@@ -24,6 +26,7 @@ class Album extends React.Component {
         const albumResponse = await getMusics(id);
         this.setState({ artist: albumResponse[0].artistName,
           album: albumResponse[0].collectionName,
+          image: albumResponse[0].artworkUrl100,
           songs: albumResponse.filter((song) => song.kind === 'song') },
         async () => {
           const favoritesResponse = await getFavoriteSongs();
@@ -51,15 +54,19 @@ class Album extends React.Component {
   }
 
   render() {
-    const { artist, album, loading, songs, favorites } = this.state;
+    const { artist, album, image, loading, songs, favorites } = this.state;
+
+    const { match } = this.props;
+    const { path } = match;
 
     return (
       <div data-testid="page-album">
-        <Header />
+        <Header activePage={ path } />
         {loading ? <Loading />
           : (
-            <>
-              <div>
+            <div className="album-container">
+              <div className="album-data">
+                <img src={ image } alt="Capa do Album" />
                 <h1 data-testid="album-name">{album}</h1>
                 <h2 data-testid="artist-name">{artist}</h2>
               </div>
@@ -77,7 +84,7 @@ class Album extends React.Component {
                   />
                 ))}
               </section>
-            </>
+            </div>
           )}
       </div>
     );

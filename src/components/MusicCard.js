@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './css/MusicCard.css';
 
 function MusicCard(props) {
   const { trackId, trackName, isChecked, previewUrl, onFavoriteCheck } = props;
   return (
-    <div key={ trackId }>
+    <div className="song-data" key={ trackId }>
       <span>{trackName}</span>
       <audio data-testid="audio-component" src={ previewUrl } controls>
         <track kind="captions" />

@@ -39,7 +39,8 @@ class Header extends Component {
               </section>
               <section className="pages">
                 <div
-                  className={ `page-link ${activePage === '/search'
+                  className={ `page-link
+                  ${(activePage === '/search' || activePage.includes('album'))
                 && activePageClass}` }
                 >
                   <Link to="/search" data-testid="link-to-search">Pesquisa</Link>
@@ -51,7 +52,7 @@ class Header extends Component {
                   <Link to="/favorites" data-testid="link-to-favorites">Favoritos</Link>
                 </div>
                 <div
-                  className={ `page-link ${activePage === '/profile'
+                  className={ `page-link ${activePage.includes('/profile')
                 && activePageClass}` }
                 >
                   <Link to="/profile" data-testid="link-to-profile">Perfil</Link>

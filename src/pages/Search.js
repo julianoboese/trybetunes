@@ -72,7 +72,7 @@ class Search extends React.Component {
         {(!loading && searchResults.length !== 0)
         && (
           <div className="search-results-container">
-            <p>{`Resultado de álbuns de ${artistSearched}:`}</p>
+            <p>{`Resultado de álbuns de: ${artistSearched}`}</p>
             <section className="search-results">
               {searchResults.map((album) => (
                 <Card

@@ -1,0 +1,34 @@
+.album-container {
+  display: flex;
+  justify-content: center;
+  margin: 80px;
+}
+
+.album-data {
+  display: flex;
+  flex-direction: column;
+  margin-right: 100px;
+  width: 25vw;
+}
+
+.album-data img {
+  border-radius: 6px;
+  width: 290px;
+}
+
+.album-data h1 {
+  margin: 25px 0 10px;
+}
+
+.album-data h2 {
+  font-weight: 300;
+  margin: 0;
+}
+
+.songs {
+  margin-right: 80px;
+}
+
+.songs audio {
+  margin: 10px 30px;
+}
