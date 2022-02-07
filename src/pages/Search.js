@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Card from '../components/Card';
 import Loading from '../components/Loading';
@@ -34,9 +35,12 @@ class Search extends React.Component {
     const { artist, isButtonDisabled, loading,
       artistSearched, searchResults } = this.state;
 
+    const { match } = this.props;
+    const { path } = match;
+
     return (
       <div data-testid="page-search">
-        <Header />
+        <Header activePage={ path } />
         {loading ? <Loading />
           : (
             <form onSubmit={ this.handleSubmit }>
@@ -82,5 +86,14 @@ class Search extends React.Component {
     );
   }
 }
+
+Search.propTypes = {
+  match: PropTypes.shape({
+    isExact: PropTypes.bool.isRequired,
+    params: PropTypes.shape({}).isRequired,
+    path: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default Search;

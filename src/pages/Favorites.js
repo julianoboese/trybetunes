@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import MusicCard from '../components/MusicCard';
@@ -35,9 +36,12 @@ class Favorites extends React.Component {
   render() {
     const { loading, favorites } = this.state;
 
+    const { match } = this.props;
+    const { path } = match;
+
     return (
       <div data-testid="page-favorites">
-        <Header />
+        <Header activePage={ path } />
         {loading ? <Loading />
           : (
             <section className="favorites">
@@ -57,5 +61,14 @@ class Favorites extends React.Component {
     );
   }
 }
+
+Favorites.propTypes = {
+  match: PropTypes.shape({
+    isExact: PropTypes.bool.isRequired,
+    params: PropTypes.shape({}).isRequired,
+    path: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default Favorites;

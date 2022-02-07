@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Loading from '../components/Loading';
 import { createUser } from '../services/userAPI';
-import { ReactComponent as Logo } from '../assets/logo.svg';
+import { ReactComponent as Logo } from '../assets/logo-login.svg';
+import './css/Login.css';
 
 class Login extends React.Component {
   state = {
