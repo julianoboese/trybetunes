@@ -8,3 +8,8 @@
 .song-data span {
   flex: 1;
 }
+
+.song-data input {
+  height: 18px;
+  width: 18px;
+}
