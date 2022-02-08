@@ -1,3 +1,9 @@
+.page-favorites {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 .favorites {
   margin: 80px auto;
   width: 50vw;

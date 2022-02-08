@@ -1,0 +1,34 @@
+.page-profile {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.profile-container {
+  margin: 80px auto;
+}
+
+.profile-container img {
+  border-radius: 100%;
+  width: 100px;
+}
+
+.profile-item {
+  margin: 40px 0;
+}
+
+.profile-item h3 {
+  margin-bottom: 0;
+}
+
+.profile-item p {
+  margin-top: 10px;
+}
+
+.profile-container a {
+  border: 1px solid #003be5;
+  border-radius: 6px;
+  color: #003be5;
+  padding: 7px 16px;
+  text-decoration: none;
+}

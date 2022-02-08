@@ -24,9 +24,12 @@ class Album extends React.Component {
     this.setState({ loading: true },
       async () => {
         const albumResponse = await getMusics(id);
+        const imageUrl = albumResponse[0].artworkUrl100
+          ? albumResponse[0].artworkUrl100.replace('100x100', '500x500')
+          : albumResponse[0].artworkUrl100;
         this.setState({ artist: albumResponse[0].artistName,
           album: albumResponse[0].collectionName,
-          image: albumResponse[0].artworkUrl100,
+          image: imageUrl,
           songs: albumResponse.filter((song) => song.kind === 'song') },
         async () => {
           const favoritesResponse = await getFavoriteSongs();
@@ -60,7 +63,7 @@ class Album extends React.Component {
     const { path } = match;
 
     return (
-      <div data-testid="page-album">
+      <div className="page-album" data-testid="page-album">
         <Header activePage={ path } />
         {loading ? <Loading />
           : (

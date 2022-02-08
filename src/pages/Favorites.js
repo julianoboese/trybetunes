@@ -41,7 +41,7 @@ class Favorites extends React.Component {
     const { path } = match;
 
     return (
-      <div data-testid="page-favorites">
+      <div className="page-favorites" data-testid="page-favorites">
         <Header activePage={ path } />
         {loading ? <Loading />
           : (

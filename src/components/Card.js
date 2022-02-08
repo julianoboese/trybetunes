@@ -12,7 +12,7 @@ function Card(props) {
         to={ `/album/${collectionId}` }
         data-testid={ `link-to-album-${collectionId}` }
       >
-        <img src={ albumImage } alt="Capa do Album" />
+        <img src={ albumImage.replace('100x100', '500x500') } alt="Capa do Album" />
         <div className="album-info">
           <h3>{collectionName}</h3>
           <h4>{artistName}</h4>

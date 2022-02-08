@@ -1,0 +1,85 @@
+.page-profile-edit {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.profile-edit-container {
+  margin: 80px auto;
+  width: 20vw;
+}
+
+.profile-edit-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.image-item {
+  align-items: flex-end;
+  display: flex;
+  gap: 15px;
+  width: 100%;
+}
+
+.image-item img {
+  border-radius: 100%;
+  width: 100px;
+}
+
+.image-item label {
+  width: 100%;
+}
+
+.image-item input {
+  border: 1px solid #dadada;
+  border-radius: 2px;
+  height: 37px;
+  padding: 10px;
+  width: 100%;
+}
+
+.profile-edit-item {
+  margin: 10px 0;
+}
+
+.profile-edit-item h3 {
+  margin-bottom: 10px;
+}
+
+.profile-edit-item input, .profile-edit-item textarea {
+  background-color: #f0f2f5;
+  border-bottom: 1px solid #3d495c;
+  border-left-width: 0;
+  border-right-width: 0;
+  border-top-width: 0;
+  padding: 10px;
+  width: 100%;
+}
+
+.profile-edit-item input {
+  height: 37px;
+}
+
+.profile-edit-item textarea {
+  height: 80px;
+}
+
+.profile-form > button {
+  align-self: center;
+  border-radius: 2px;
+  border-width: 0;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 16px;
+  margin-top: 30px;
+  padding: 8px 32px;
+}
+
+.profile-form > button:enabled {
+  background-color: #003be5;
+  color: white;
+  cursor: pointer;
+}
+
+.profile-form > button:hover:enabled {
+  background-color: #0039e594;
+}

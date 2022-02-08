@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import { getUser } from '../services/userAPI';
+import './css/Profile.css';
 
 class Profile extends React.Component {
   state = {
@@ -30,17 +31,30 @@ class Profile extends React.Component {
     const { path } = match;
 
     return (
-      <div data-testid="page-profile">
+      <div className="page-profile" data-testid="page-profile">
         <Header activePage={ path } />
         {loading ? <Loading />
           : (
-            <>
-              <img src={ image } alt="Foto de perfil" data-testid="profile-image" />
-              <p>{name}</p>
-              <p>{email}</p>
-              <p>{description}</p>
+            <section className="profile-container">
+              <img
+                src={ image || '/standard-profile.svg' }
+                alt="Foto de perfil"
+                data-testid="profile-image"
+              />
+              <div className="profile-item">
+                <h3>Nome</h3>
+                <p>{name}</p>
+              </div>
+              <div className="profile-item">
+                <h3>E-mail</h3>
+                <p>{email}</p>
+              </div>
+              <div className="profile-item">
+                <h3>Descrição</h3>
+                <p>{description}</p>
+              </div>
               <Link to="/profile/edit">Editar perfil</Link>
-            </>
+            </section>
           )}
       </div>
     );

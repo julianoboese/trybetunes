@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import { getUser, updateUser } from '../services/userAPI';
+import './css/ProfileEdit.css';
 
 class ProfileEdit extends React.Component {
   state = {
@@ -58,58 +59,80 @@ class ProfileEdit extends React.Component {
     }
 
     return (
-      <div data-testid="page-profile-edit">
+      <div className="page-profile-edit" data-testid="page-profile-edit">
         <Header activePage={ path } />
         {loading ? <Loading />
           : (
-            <form onSubmit={ this.handleSubmit }>
-              <label htmlFor="profile-image">
-                <input
-                  type="text"
-                  name="image"
-                  value={ image }
-                  id="profile-image"
-                  onChange={ this.handleChange }
-                  data-testid="edit-input-image"
-                />
-              </label>
-              <label htmlFor="profile-name">
-                <input
-                  type="text"
-                  name="name"
-                  value={ name }
-                  id="profile-name"
-                  onChange={ this.handleChange }
-                  data-testid="edit-input-name"
-                />
-              </label>
-              <label htmlFor="profile-email">
-                <input
-                  type="email"
-                  name="email"
-                  value={ email }
-                  id="profile-email"
-                  onChange={ this.handleChange }
-                  data-testid="edit-input-email"
-                />
-              </label>
-              <label htmlFor="profile-description">
-                <textarea
-                  name="description"
-                  value={ description }
-                  id="profile-description"
-                  onChange={ this.handleChange }
-                  data-testid="edit-input-description"
-                />
-              </label>
-              <button
-                type="submit"
-                disabled={ isButtonDisabled }
-                data-testid="edit-button-save"
-              >
-                Salvar
-              </button>
-            </form>
+            <div className="profile-edit-container">
+              <form className="profile-form" onSubmit={ this.handleSubmit }>
+                <div className="image-item">
+                  <img
+                    src={ image || '/standard-profile.svg' }
+                    alt="Foto de perfil"
+                    data-testid="profile-image"
+                  />
+                  <label htmlFor="profile-image">
+                    <input
+                      type="text"
+                      name="image"
+                      value={ image }
+                      id="profile-image"
+                      placeholder="Digite uma URL"
+                      onChange={ this.handleChange }
+                      data-testid="edit-input-image"
+                    />
+                  </label>
+                </div>
+                <div className="profile-edit-item">
+                  <h3>Nome</h3>
+                  <label htmlFor="profile-name">
+                    <input
+                      type="text"
+                      name="name"
+                      value={ name }
+                      id="profile-name"
+                      placeholder="Digite seu nome"
+                      onChange={ this.handleChange }
+                      data-testid="edit-input-name"
+                    />
+                  </label>
+                </div>
+                <div className="profile-edit-item">
+                  <h3>E-mail</h3>
+                  <label htmlFor="profile-email">
+                    <input
+                      type="email"
+                      name="email"
+                      value={ email }
+                      id="profile-email"
+                      placeholder="usuario@usuario.com.br"
+                      onChange={ this.handleChange }
+                      data-testid="edit-input-email"
+                    />
+                  </label>
+                </div>
+                <div className="profile-edit-item">
+                  <h3>Descrição</h3>
+                  <label htmlFor="profile-description">
+                    <textarea
+                      name="description"
+                      value={ description }
+                      id="profile-description"
+                      placeholder="Sobre mim"
+                      onChange={ this.handleChange }
+                      data-testid="edit-input-description"
+                    />
+                  </label>
+                </div>
+                <button
+                  type="submit"
+                  disabled={ isButtonDisabled }
+                  data-testid="edit-button-save"
+                >
+                  Salvar
+                </button>
+              </form>
+            </div>
           )}
       </div>
     );
