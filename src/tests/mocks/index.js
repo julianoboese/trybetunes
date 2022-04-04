@@ -28,7 +28,8 @@ export const searchAlbumDefaultResponse = [
   },
 ];
 
-export const iTunesLookupAlbumResponse = { results:
+export const iTunesLookupAlbumResponse = {
+  results:
   [
     {
       artistName: 'Artist Name',
@@ -58,7 +59,8 @@ export const iTunesLookupAlbumResponse = { results:
       previewUrl: 'preview-url-4',
       kind: 'song',
     },
-  ] };
+  ],
+};
 
 export const musicAPIDefaultResponse = [
   {

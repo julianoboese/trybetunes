@@ -3,22 +3,24 @@ import PropTypes from 'prop-types';
 import './css/MusicCard.css';
 
 function MusicCard(props) {
-  const { trackId, trackName, isChecked, previewUrl, onFavoriteCheck } = props;
+  const {
+    trackId, trackName, isChecked, previewUrl, onFavoriteCheck,
+  } = props;
   return (
-    <div className="song-data" key={ trackId }>
+    <div className="song-data" key={trackId}>
       <span>{trackName}</span>
-      <audio data-testid="audio-component" src={ previewUrl } controls>
+      <audio data-testid="audio-component" src={previewUrl} controls>
         <track kind="captions" />
         {`O seu navegador não suporta o elemento ${<code>audio</code>}.`}
       </audio>
-      <label htmlFor={ trackId }>
+      <label htmlFor={trackId}>
         <input
           type="checkbox"
           name="favorite"
-          id={ trackId }
-          checked={ isChecked }
-          data-testid={ `checkbox-music-${trackId}` }
-          onChange={ onFavoriteCheck }
+          id={trackId}
+          checked={isChecked}
+          data-testid={`checkbox-music-${trackId}`}
+          onChange={onFavoriteCheck}
         />
         <span className="favorite-label">Favorita</span>
       </label>

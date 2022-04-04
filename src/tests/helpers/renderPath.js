@@ -8,7 +8,7 @@ const renderPath = (path) => {
   const history = createBrowserHistory();
   history.push(path);
   const { ...resources } = render(
-    <Router history={ history }>
+    <Router history={history}>
       <App />
     </Router>,
   );

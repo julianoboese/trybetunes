@@ -13,31 +13,39 @@ class Profile extends React.Component {
     description: '',
     image: '',
     loading: false,
-  }
+  };
 
   componentDidMount() {
-    this.setState({ loading: true },
+    this.setState(
+      { loading: true },
       async () => {
         const userResponse = await getUser();
-        const { name, email, description, image } = userResponse;
-        this.setState({ loading: false, name, email, description, image });
-      });
+        const {
+          name, email, description, image,
+        } = userResponse;
+        this.setState({
+          loading: false, name, email, description, image,
+        });
+      },
+    );
   }
 
   render() {
-    const { name, email, description, image, loading } = this.state;
+    const {
+      name, email, description, image, loading,
+    } = this.state;
 
     const { match } = this.props;
     const { path } = match;
 
     return (
       <div className="page-profile" data-testid="page-profile">
-        <Header activePage={ path } />
+        <Header activePage={path} />
         {loading ? <Loading />
           : (
             <section className="profile-container">
               <img
-                src={ image || '/standard-profile.svg' }
+                src={image || '/standard-profile.svg'}
                 alt="Foto de perfil"
                 data-testid="profile-image"
               />

@@ -11,14 +11,16 @@ class Header extends Component {
     name: '',
     loading: false,
     activePage: '',
-  }
+  };
 
   async componentDidMount() {
     const { activePage } = this.props;
     this.setState({ loading: true }, async () => {
       const loggedUser = await getUser();
-      this.setState({ name: loggedUser.name },
-        () => this.setState({ loading: false, activePage }));
+      this.setState(
+        { name: loggedUser.name },
+        () => this.setState({ loading: false, activePage }),
+      );
     });
   }
 
@@ -39,21 +41,21 @@ class Header extends Component {
               </section>
               <section className="pages">
                 <div
-                  className={ `page-link
+                  className={`page-link
                   ${(activePage === '/search' || activePage.includes('album'))
-                && activePageClass}` }
+                && activePageClass}`}
                 >
                   <Link to="/search" data-testid="link-to-search">Pesquisa</Link>
                 </div>
                 <div
-                  className={ `page-link middle-page ${activePage === '/favorites'
-                && activePageClass}` }
+                  className={`page-link middle-page ${activePage === '/favorites'
+                && activePageClass}`}
                 >
                   <Link to="/favorites" data-testid="link-to-favorites">Favoritos</Link>
                 </div>
                 <div
-                  className={ `page-link ${activePage.includes('/profile')
-                && activePageClass}` }
+                  className={`page-link ${activePage.includes('/profile')
+                && activePageClass}`}
                 >
                   <Link to="/profile" data-testid="link-to-profile">Perfil</Link>
                 </div>

@@ -1,7 +1,7 @@
-import { 
+import {
   screen,
   waitFor,
-  waitForElementToBeRemoved 
+  waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -18,21 +18,24 @@ describe('12 - Crie a lista de músicas favoritas', () => {
 
   afterEach(() => localStorage.clear());
 
-  it('Será validado se a requisição para getFavoriteSongs é feita para recuperar as músicas favoritas',
+  it(
+    'Será validado se a requisição para getFavoriteSongs é feita para recuperar as músicas favoritas',
     async () => {
       const spy = jest.spyOn(favoriteSongsAPI, 'getFavoriteSongs');
 
-      renderPath("/favorites");
+      renderPath('/favorites');
 
       await waitFor(
         () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
-        { timeout: 3000 }
+        { timeout: 3000 },
       );
 
       expect(spy).toBeCalled();
-    });
+    },
+  );
 
-  it('Será validado se é exibida a lista de músicas favoritas',
+  it(
+    'Será validado se é exibida a lista de músicas favoritas',
     async () => {
       const favoriteSongs = [
         {
@@ -48,18 +51,20 @@ describe('12 - Crie a lista de músicas favoritas', () => {
       ];
       localStorage.setItem('favorite_songs', JSON.stringify(favoriteSongs));
 
-      renderPath("/favorites");
+      renderPath('/favorites');
 
       await waitFor(
         () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
-        { timeout: 3000 }
+        { timeout: 3000 },
       );
       expect(screen.getByText('Track Name 1')).toBeInTheDocument();
       expect(screen.getByText('Track Name 2')).toBeInTheDocument();
       expect(screen.getAllByTestId('audio-component')).toHaveLength(2);
-    });
+    },
+  );
 
-  it('Será validado se a lista de músicas favoritas é atualizada ao remover uma música da lista',
+  it(
+    'Será validado se a lista de músicas favoritas é atualizada ao remover uma música da lista',
     async () => {
       const favoriteSongs = [
         {
@@ -80,11 +85,11 @@ describe('12 - Crie a lista de músicas favoritas', () => {
       ];
       localStorage.setItem('favorite_songs', JSON.stringify(favoriteSongs));
 
-      renderPath("/favorites");
+      renderPath('/favorites');
 
       await waitFor(
         () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
-        { timeout: 3000 }
+        { timeout: 3000 },
       );
 
       const checkboxes = screen.getAllByLabelText('Favorita');
@@ -107,5 +112,6 @@ describe('12 - Crie a lista de músicas favoritas', () => {
       expect(screen.getByText('Track Name 3')).toBeInTheDocument();
       expect(screen.getAllByTestId('audio-component')).toHaveLength(2);
       expect(screen.getAllByLabelText('Favorita')).toHaveLength(2);
-    });
+    },
+  );
 });

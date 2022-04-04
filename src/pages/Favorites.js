@@ -10,14 +10,16 @@ class Favorites extends React.Component {
   state = {
     loading: false,
     favorites: [],
-  }
+  };
 
   componentDidMount() {
-    this.setState({ loading: true },
+    this.setState(
+      { loading: true },
       async () => {
         const favoritesResponse = await getFavoriteSongs();
         this.setState({ loading: false, favorites: [...favoritesResponse] });
-      });
+      },
+    );
   }
 
   handleUnfavorite = ({ target }) => {
@@ -32,7 +34,7 @@ class Favorites extends React.Component {
       await removeSong(favoriteObject);
       this.setState({ loading: false });
     });
-  }
+  };
 
   render() {
     const { loading, favorites } = this.state;
@@ -42,19 +44,19 @@ class Favorites extends React.Component {
 
     return (
       <div className="page-favorites" data-testid="page-favorites">
-        <Header activePage={ path } />
+        <Header activePage={path} />
         {loading ? <Loading />
           : (
             <section className="favorites">
               <p>Músicas favoritas:</p>
               {favorites.map((favorite) => (
                 <MusicCard
-                  key={ favorite.trackId }
-                  trackId={ favorite.trackId }
-                  trackName={ favorite.trackName }
+                  key={favorite.trackId}
+                  trackId={favorite.trackId}
+                  trackName={favorite.trackName}
                   isChecked
-                  previewUrl={ favorite.previewUrl }
-                  onFavoriteCheck={ this.handleUnfavorite }
+                  previewUrl={favorite.previewUrl}
+                  onFavoriteCheck={this.handleUnfavorite}
                 />
               ))}
             </section>

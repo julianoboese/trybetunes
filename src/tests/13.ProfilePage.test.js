@@ -13,64 +13,71 @@ describe('13 - Crie a exibição de perfil', () => {
 
   afterEach(() => localStorage.clear());
 
-  it('Será validado se a API getUser é usada para recuperar as informações da pessoa logada',
+  it(
+    'Será validado se a API getUser é usada para recuperar as informações da pessoa logada',
     async () => {
       const spy = jest.spyOn(userAPI, 'getUser');
 
-      renderPath("/profile");
+      renderPath('/profile');
 
       await waitFor(
         () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
-        { timeout: 3000 }
+        { timeout: 3000 },
       );
 
       expect(spy).toBeCalled();
-    });
+    },
+  );
 
-  it('Será validado se as informações da pessoa logada são exibidas na tela',
+  it(
+    'Será validado se as informações da pessoa logada são exibidas na tela',
     async () => {
-      renderPath("/profile");
+      renderPath('/profile');
 
       await waitFor(
         () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
-        { timeout: 3000 }
+        { timeout: 3000 },
       );
 
       expect(screen.getAllByText('User Test')).toHaveLength(2);
       expect(screen.getByText('email@test.com')).toBeInTheDocument();
       expect(screen.getByText('Lorem ipsum')).toBeInTheDocument();
       expect(screen.getByTestId('profile-image')).toHaveAttribute('src', 'url-to-image');
-    });
+    },
+  );
 
-  it('Será validado se foi criado um link para a rota de edição de perfil com o texto Editar perfil',
+  it(
+    'Será validado se foi criado um link para a rota de edição de perfil com o texto Editar perfil',
     async () => {
-      renderPath("/profile");
+      renderPath('/profile');
 
       await waitFor(
         () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
-        { timeout: 3000 }
+        { timeout: 3000 },
       );
 
-      expect(screen.getByText("Editar perfil")).toBeInTheDocument();
-    });
+      expect(screen.getByText('Editar perfil')).toBeInTheDocument();
+    },
+  );
 
-  it('Será validado se ao clicar no link Editar perfil, a navegação acontece corretamente',
+  it(
+    'Será validado se ao clicar no link Editar perfil, a navegação acontece corretamente',
     async () => {
-      renderPath("/profile");
+      renderPath('/profile');
 
       await waitFor(
         () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
-        { timeout: 3000 }
+        { timeout: 3000 },
       );
 
-      userEvent.click(screen.getByText("Editar perfil"));
+      userEvent.click(screen.getByText('Editar perfil'));
 
       await waitFor(
         () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
-        { timeout: 3000 }
+        { timeout: 3000 },
       );
 
       expect(window.location.pathname).toBe('/profile/edit');
-    });
-
+    },
+  );
 });

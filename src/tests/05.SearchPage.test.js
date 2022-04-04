@@ -11,27 +11,30 @@ describe('5 - Crie o formulário para pesquisar artistas', () => {
   });
 
   afterEach(() => localStorage.clear());
-  
-  it('Será validado se ao navegar para a rota /search, o input e o botão estão presentes na tela',
+
+  it(
+    'Será validado se ao navegar para a rota /search, o input e o botão estão presentes na tela',
     async () => {
-      renderPath("/search");
+      renderPath('/search');
 
       await waitFor(
         () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
-        { timeout: 3000 }
+        { timeout: 3000 },
       );
 
       expect(screen.getByTestId('search-artist-input')).toBeInTheDocument();
       expect(screen.getByTestId('search-artist-button')).toBeInTheDocument();
-    });
+    },
+  );
 
-  it('Será validado se o botão está habilitado somente se o input de nome tiver 2 ou mais caracteres',
+  it(
+    'Será validado se o botão está habilitado somente se o input de nome tiver 2 ou mais caracteres',
     async () => {
-      renderPath("/search");
+      renderPath('/search');
 
       await waitFor(
         () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
-        { timeout: 3000 }
+        { timeout: 3000 },
       );
 
       const searchArtistInput = screen.getByTestId('search-artist-input');
@@ -49,5 +52,6 @@ describe('5 - Crie o formulário para pesquisar artistas', () => {
       userEvent.type(searchArtistInput, '2');
       expect(searchArtistInput.value).toBe('U2');
       expect(searchArtistButton).toBeEnabled();
-    });
+    },
+  );
 });

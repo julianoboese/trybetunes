@@ -18,11 +18,11 @@ describe('7 - Crie a lista de músicas do álbum selecionado', () => {
       () => Promise.resolve(musicAPIDefaultResponse),
     );
 
-    renderPath("/album/12");
+    renderPath('/album/12');
 
     await waitFor(
       () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
-      { timeout: 3000 }
+      { timeout: 3000 },
     );
 
     expect(spy).toHaveBeenCalled();
@@ -34,20 +34,20 @@ describe('7 - Crie a lista de músicas do álbum selecionado', () => {
       () => Promise.resolve(musicAPIDefaultResponse),
     );
 
-    renderPath("/album/12");
+    renderPath('/album/12');
 
     await waitFor(
       () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
-      { timeout: 3000 }
+      { timeout: 3000 },
     );
 
-    const artistNameElement = screen.getByTestId('artist-name'); 
+    const artistNameElement = screen.getByTestId('artist-name');
     expect(artistNameElement).toBeInTheDocument();
-    expect(artistNameElement).toHaveTextContent("Artist Name");
+    expect(artistNameElement).toHaveTextContent('Artist Name');
 
-    const albumNameElement = screen.getByTestId('album-name'); 
+    const albumNameElement = screen.getByTestId('album-name');
     expect(albumNameElement).toBeInTheDocument();
-    expect(albumNameElement).toHaveTextContent("Collection Name");
+    expect(albumNameElement).toHaveTextContent('Collection Name');
   });
 
   it('Será validado se todas músicas retornadas pela API são listadas', async () => {
@@ -55,11 +55,11 @@ describe('7 - Crie a lista de músicas do álbum selecionado', () => {
       () => Promise.resolve(musicAPIDefaultResponse),
     );
 
-    renderPath("/album/12");
+    renderPath('/album/12');
 
     await waitFor(
       () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
-      { timeout: 3000 }
+      { timeout: 3000 },
     );
 
     expect(screen.getByText('Track Name 1')).toBeInTheDocument();

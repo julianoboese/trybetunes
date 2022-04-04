@@ -10,7 +10,7 @@ class Login extends React.Component {
     name: '',
     isButtonDisabled: true,
     loading: false,
-  }
+  };
 
   handleChange = ({ target }) => {
     const minLength = 3;
@@ -18,7 +18,7 @@ class Login extends React.Component {
       name: target.value,
       isButtonDisabled: target.value.length < minLength,
     });
-  }
+  };
 
   handleSubmit = (event) => {
     const { name } = this.state;
@@ -28,7 +28,7 @@ class Login extends React.Component {
       await createUser({ name });
       onLogin();
     });
-  }
+  };
 
   render() {
     const { name, isButtonDisabled, loading } = this.state;
@@ -39,18 +39,18 @@ class Login extends React.Component {
         {loading ? <Loading />
           : (
             <section className="login-form-container">
-              <form className="login-form" onSubmit={ this.handleSubmit }>
+              <form className="login-form" onSubmit={this.handleSubmit}>
                 <input
                   type="text"
                   name="name"
                   placeholder="Digite seu nome"
-                  value={ name }
-                  onChange={ this.handleChange }
+                  value={name}
+                  onChange={this.handleChange}
                   data-testid="login-name-input"
                 />
                 <button
                   type="submit"
-                  disabled={ isButtonDisabled }
+                  disabled={isButtonDisabled}
                   data-testid="login-submit-button"
                 >
                   Entrar

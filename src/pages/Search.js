@@ -13,7 +13,7 @@ class Search extends React.Component {
     loading: false,
     artistSearched: '',
     searchResults: [],
-  }
+  };
 
   handleChange = ({ target }) => {
     const minLength = 2;
@@ -21,7 +21,7 @@ class Search extends React.Component {
       artist: target.value,
       isButtonDisabled: target.value.length < minLength,
     });
-  }
+  };
 
   handleSubmit = (event) => {
     const { artist } = this.state;
@@ -30,33 +30,35 @@ class Search extends React.Component {
       const response = await searchAlbumsAPI(artist);
       this.setState({ artist: '', loading: false, searchResults: response });
     });
-  }
+  };
 
   render() {
-    const { artist, isButtonDisabled, loading,
-      artistSearched, searchResults } = this.state;
+    const {
+      artist, isButtonDisabled, loading,
+      artistSearched, searchResults,
+    } = this.state;
 
     const { match } = this.props;
     const { path } = match;
 
     return (
       <div className="page-search" data-testid="page-search">
-        <Header activePage={ path } />
+        <Header activePage={path} />
         {loading ? <Loading />
           : (
             <section className="search-form-container">
-              <form className="search-form" onSubmit={ this.handleSubmit }>
+              <form className="search-form" onSubmit={this.handleSubmit}>
                 <input
                   type="text"
                   name="artist"
                   placeholder="Digite o nome do artista"
-                  value={ artist }
-                  onChange={ this.handleChange }
+                  value={artist}
+                  onChange={this.handleChange}
                   data-testid="search-artist-input"
                 />
                 <button
                   type="submit"
-                  disabled={ isButtonDisabled }
+                  disabled={isButtonDisabled}
                   data-testid="search-artist-button"
                 >
                   Pesquisar
@@ -76,11 +78,11 @@ class Search extends React.Component {
             <section className="search-results">
               {searchResults.map((album) => (
                 <Card
-                  key={ album.collectionId }
-                  artistName={ album.artistName }
-                  collectionName={ album.collectionName }
-                  collectionId={ album.collectionId }
-                  albumImage={ album.artworkUrl100 }
+                  key={album.collectionId}
+                  artistName={album.artistName}
+                  collectionName={album.collectionName}
+                  collectionId={album.collectionId}
+                  albumImage={album.artworkUrl100}
                 />
               ))}
             </section>
